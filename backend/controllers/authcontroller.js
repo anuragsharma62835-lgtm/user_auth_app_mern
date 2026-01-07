@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { OAuth2Client } = require("google-auth-library");
 
-/* ================= REGISTER ================= */
 exports.register = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -39,7 +38,6 @@ exports.register = async (req, res) => {
   }
 };
 
-/* ================= LOGIN ================= */
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -75,7 +73,6 @@ exports.login = async (req, res) => {
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
-/* ================= GOOGLE AUTH ================= */
 exports.googleAuth = async (req, res) => {
   const { token } = req.body;
 
@@ -91,7 +88,6 @@ exports.googleAuth = async (req, res) => {
     let user = await User.findOne({ email });
 
     if (user) {
-      // User exists (email/password OR google)
       if (!user.googleId) {
         user.googleId = sub;
         user.authProvider = "google";
@@ -99,7 +95,6 @@ exports.googleAuth = async (req, res) => {
         await user.save();
       }
     } else {
-      // New Google user
       user = await User.create({
         name,
         email,
