@@ -4,6 +4,7 @@ import API from "../services/api";
 import { useAuth } from "../context/authcontext";
 import GoogleLoginButton from "../components/GoogleLoginButton";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -16,7 +17,10 @@ const Signup = () => {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -24,7 +28,7 @@ const Signup = () => {
     try {
       const res = await API.post("/auth/register", formData);
       login(res.data);
-      toast.success("signup sucessfull");
+      toast.success("Signup successful");
       navigate("/dashboard");
     } catch (error) {
       toast.error(error.response?.data?.message || "Signup failed");
@@ -45,6 +49,7 @@ const Signup = () => {
             onChange={handleChange}
             required
           />
+
           <input
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             name="email"
@@ -53,6 +58,7 @@ const Signup = () => {
             onChange={handleChange}
             required
           />
+
           <input
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             name="password"
@@ -61,6 +67,7 @@ const Signup = () => {
             onChange={handleChange}
             required
           />
+
           <button
             type="submit"
             className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition"
@@ -76,7 +83,7 @@ const Signup = () => {
         </div>
 
         <p className="mt-4 text-center text-gray-600">
-          Already have an account?
+          Already have an account?{" "}
           <Link to="/" className="text-blue-500 hover:underline">
             Login
           </Link>

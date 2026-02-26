@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authcontext";
 import { toast } from "react-toastify";
 
-const GoogleLoginButton = () => {
+const googleloginbutton = () => {
   const navigate = useNavigate(); 
   const { login } = useAuth();
 
@@ -29,4 +29,4 @@ const GoogleLoginButton = () => {
   );
 };
 
-export default GoogleLoginButton;
+export default googleloginbutton;
