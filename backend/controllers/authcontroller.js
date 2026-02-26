@@ -49,7 +49,7 @@ exports.login = async (req, res) => {
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ message: "password does match" });
     }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
@@ -68,8 +68,6 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-
-
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -104,11 +102,9 @@ exports.googleAuth = async (req, res) => {
       });
     }
 
-    const jwtToken = jwt.sign(
-      { id: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: "7d" }
-    );
+    const jwtToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
 
     res.status(200).json({
       token: jwtToken,
@@ -121,6 +117,11 @@ exports.googleAuth = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(401).json({ message: "Google authentication failed" ,details:error.message});
+    res
+      .status(401)
+      .json({
+        message: "Google authentication failed",
+        details: error.message,
+      });
   }
 };

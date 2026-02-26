@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import API from "../services/api";
 import { useAuth } from "../context/authcontext";
-import GoogleLoginButton from "../components/googleloginbutton";
+import GoogleLoginButton from "../components/GoogleLoginButton";
 import { toast } from "react-toastify";
 
 const Signup = () => {
@@ -24,7 +24,7 @@ const Signup = () => {
     try {
       const res = await API.post("/auth/register", formData);
       login(res.data);
-      toast.success("login sucessfull");
+      toast.success("signup sucessfull");
       navigate("/dashboard");
     } catch (error) {
       toast.error(error.response?.data?.message || "Signup failed");
@@ -77,7 +77,7 @@ const Signup = () => {
 
         <p className="mt-4 text-center text-gray-600">
           Already have an account?
-          <Link to="/login" className="text-blue-500 hover:underline">
+          <Link to="/" className="text-blue-500 hover:underline">
             Login
           </Link>
         </p>

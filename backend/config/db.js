@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const connectDB = () => {
   try {
     mongoose.connect(process.env.MONGO_URI).then(() => {
-      console.log("db connected");
+      console.log("Mongo Atlas Connected Successfully");
     });
   } catch (error) {
     console.log(error);

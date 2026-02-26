@@ -19,11 +19,11 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await API.post("/auth/login", formData);
-      login(res.data); 
-      toast.success('login successfull')
+      login(res.data);
+      toast.success("login successfull");
       navigate("/dashboard");
     } catch (error) {
-      toast.error(error.response?.data);
+      toast.error(error.response?.data?.message || error.response?.data?.message || "error" );
     }
   };
 
