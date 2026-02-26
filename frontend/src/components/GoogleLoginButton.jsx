@@ -2,7 +2,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authcontext";
 import { toast } from "react-toastify";
-import API from "../services/api"; // ✅ IMPORTANT
+import API from "../services/api";
 
 const GoogleLoginButton = () => {
   const navigate = useNavigate();
