@@ -7,6 +7,8 @@ const rateLimiter = require("./middleware/ratelimiter");
 
 dotenv.config();
 
+app.use(cors({ origin: true, credentials: true }));
+
 const app = express();
 
 // app.use(
@@ -21,7 +23,6 @@ const app = express();
 //   })
 // );
 
-app.use(cors({ origin: true, credentials: true }));
 
 app.use(express.json());
 
