@@ -8,13 +8,16 @@ const rateLimiter = require("./middleware/ratelimiter");
 dotenv.config();
 
 const app = express();
+
 app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      process.env.CLIENT_URL,
+      "https://user-auth-app-mern.vercel.app",
+      "https://user-auth-app-mern-144j4i8nw-anurags-projects-6158872e.vercel.app",
     ],
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   })
 );
 
