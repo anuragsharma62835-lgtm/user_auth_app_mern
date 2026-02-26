@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/db");
 
-const rateLimiter = require("./middleware/rateLimiter");
+const rateLimiter = require("./middleware/ratelimiter");
 
 dotenv.config();
 
@@ -13,7 +13,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173", 
-      process.env.CLIENT_URL,  
+      // process.env.CLIENT_URL,  
     ],
     credentials: true,
   })
