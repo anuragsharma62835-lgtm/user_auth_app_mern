@@ -2,7 +2,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authcontext";
 import { toast } from "react-toastify";
-import API from "../services/api";   // ✅ IMPORTANT
+import API from "../services/api"; // ✅ IMPORTANT
 
 const GoogleLoginButton = () => {
   const navigate = useNavigate();
@@ -19,16 +19,17 @@ const GoogleLoginButton = () => {
       toast.success("Google login successful");
     } catch (error) {
       console.error(error);
-      toast.error(
-        error.response?.data?.message || "Google login failed"
-      );
+      toast.error(error.response?.data?.message || "Google login failed");
     }
   };
 
   return (
     <GoogleLogin
       onSuccess={handleSuccess}
-      onError={() => toast.error("Login Failed")}
+      onError={() => alert("Login Failed")}
+      useOneTap={false}
+      auto_select={false}
+      prompt="select_account"
     />
   );
 };
